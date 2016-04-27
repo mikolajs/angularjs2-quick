@@ -8,7 +8,9 @@
       <div><img src="img/press.png" /> <span>{{pressure}} hPa</span>   </div> \
       <div> <img src="img/humi.png" /> <span>{{humidility}} %</span>  </div> \
       <div><img src="img/wind.png" /> <span>{{wind}} m/s</span> </div> \
-      <div><img src="img/sun.png" /> <span>{{sun}} lum</span> </div>'
+      <div><img src="img/sun.png" /> <span>{{sun}} lum</span> </div> \
+      <div><button (click)="fun($event)">AJAX</button></div> \
+      <div>{{inform}}</div>'
     })
     .Class({
       constructor: function() {
@@ -18,8 +20,10 @@
         this.wind = 5;
         this.sun = 4;
         this.jsonData = "";
+        this.inform ="puste"
+        this.http = ng.http
       },
-      fun : function() {
+      fun : function(event) {
        this.http.get('http://www.w3schools.com/jquery/demo_ajax_json.js')
         .map(function(res) {res.text();})
         .suscribe(
